@@ -6,8 +6,10 @@ const express=require("express");
 const app=express();
 const mongoose = require("mongoose");
 
+//const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";//database wanderlust kyuki ab hm real deploy kr rhe hai to yeh hta diya hai
+const dburl = process.env.ATLASDB_URL; //yeh
 
-const dburl = process.env.ATLASDB_URL;
+
 const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride=require("method-override");
@@ -22,7 +24,7 @@ const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const session =require("express-session");
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');//yeh
 
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -38,7 +40,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended:true}));
 
 
-
+//yeh
 const store =  MongoStore.create({
   mongoUrl: dburl,
   crypto:{
@@ -53,8 +55,8 @@ store.on("error", ()=>{
 
 
 const sessionOptions={
-        store,
-        secret: process.env.SECRET,
+        store,//yeh
+        secret: process.env.SECREt,//yeh
         resave: false, 
         saveUninitialized: true,
         cookie:{
@@ -94,6 +96,8 @@ main()
 .catch((err)=>{
     console.log(err);
 });
+
+
 //make databse
 async function main(){
 await mongoose.connect(dburl);
