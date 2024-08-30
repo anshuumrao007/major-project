@@ -1,7 +1,7 @@
 <% layout ("/layouts/boilerplate")%>
 <!-- bcz env values not accessible to public js  -->
 <script>
-        const mapToken = "<%= process.env.MAP_TO %>";
+        const mapToken = "<%= process.env.MAP_TOKEN %>";
         const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
 
 </script> 
