@@ -7,7 +7,7 @@ const app=express();
 const mongoose = require("mongoose");
 
 //const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";//database wanderlust kyuki ab hm real deploy kr rhe hai to yeh hta diya hai
-const dburl = process.env.ATLASDB_URL; //yeh
+ const dburl = process.env.ATLASDB_URL; //yeh
 
 
 const Listing = require("./models/listing.js");
@@ -41,21 +41,21 @@ app.use(express.urlencoded({extended:true}));
 
 
 //yeh
-const store =  MongoStore.create({
-  mongoUrl: dburl,
-  crypto:{
-     secret: process.env.SECRET,
-  },
-  touchAfter: 24*3600,    
-});
+// const store =  MongoStore.create({
+//   mongoUrl: dburl,
+//   crypto:{
+//      secret: process.env.SECRET,
+//   },
+//   touchAfter: 24*3600,    
+// });
 
-store.on("error", ()=>{
-  console.log("ERROR in MONGO SESSION STORE", err);
-});
+// store.on("error", ()=>{
+//   console.log("ERROR in MONGO SESSION STORE", err);
+// });
 
 
 const sessionOptions={
-        store,
+        //store,
         secret: process.env.SECRET,
         resave: false, 
         saveUninitialized: true,
@@ -106,11 +106,20 @@ await mongoose.connect(dburl);
 
 
 
+
  app.use ("/listings", listingsRouter); 
  app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
 
 
+//new work
+app.get("/privacy", (req, res)=>{
+  res.render("listings/privacy.ejs");
+  });
+  //app.get("/listings/search/:id", wrapAsync (async(req,res,next)=>{
+  app.get("/listings/searchopt/:id", (req, res)=>{
+    res.send(id);
+  });
 
 app.all("*",(req, res, next)=>{
     next(new ExpressError(404, "Page Not Found"));
