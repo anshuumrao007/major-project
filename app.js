@@ -117,9 +117,9 @@ app.get("/privacy", (req, res)=>{
   res.render("listings/privacy.ejs");
   });
   //app.get("/listings/search/:id", wrapAsync (async(req,res,next)=>{
-  app.get("/listings/searchopt/:id", (req, res)=>{
-    res.send(id);
-  });
+  // app.get("/listings/searchopt/:id", (req, res)=>{
+    
+  // });
 
 app.all("*",(req, res, next)=>{
     next(new ExpressError(404, "Page Not Found"));
