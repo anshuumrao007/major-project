@@ -116,16 +116,85 @@ app.use("/", userRouter);
 app.get("/privacy", (req, res)=>{
   res.render("listings/privacy.ejs");
   });
-  //app.get("/listings/search/:id", wrapAsync (async(req,res,next)=>{
-  // app.get("/listings/searchopt/:id", (req, res)=>{
-    
-  // });
+ 
+
+
+
+
+//   /listings/serchopt/:id
+
+// Route to handle search
+//app.get('/listings/search', async (req, res) => {
+  //  const searchTerm = req.query.q;  // Get the search term from query string
+  
+    // Log request details
+    // console.log("Request URL:", req.url);
+    // console.log("Query Parameters:", req.query);
+    //console.log("Search Term:", searchTerm);
+  
+    // if (!searchTerm) {
+    //   console.error('No search term provided');
+    //   return res.status(400).send('Search term is required');
+    // }
+  
+    // try {
+    //   const results = await Listing.find({
+    //     $or: [
+    //       { name: { $regex: searchTerm, $options: 'i' } },
+    //       { location: { $regex: searchTerm, $options: 'i' } }
+    //     ]
+    //   });
+  
+    //   res.json(results);
+    // } catch (error) {
+    //   console.error('Search error:', error);
+    //   res.status(500).send('An error occurred during search');
+    // }
+  //});
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   app.get("/:id", wrapAsync(async(req, res, next)=>{
+
+    let {title}=req.body;
+const listing= Listing.find( {category: "title"} );
+//   const listing=await Listing.findById(title);
+  console.log(listing);
+ res.send("fef");
+//  res.render("listings/index.ejs", "id");
+   }));
+
+
 
 app.all("*",(req, res, next)=>{
     next(new ExpressError(404, "Page Not Found"));
 });
 
-
+//4ki 5
 
 
  app.use((err, req, res, next)=>{

@@ -108,7 +108,7 @@ const sampleListings = [
     country: "Switzerland",
   },
   {
-    title: "Safari Lodge in the Serengeti",
+    title: " Lodge in the Serengeti",
     description:
       "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
     image: {
